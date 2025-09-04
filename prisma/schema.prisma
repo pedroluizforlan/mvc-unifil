@@ -8,17 +8,12 @@
 
 // Define como o Prisma Client será gerado
 generator client {
-    // Especifica que queremos gerar o cliente JavaScript/TypeScript do Prisma
     provider = "prisma-client-js"
-    // Define onde o código gerado do cliente será salvo
     output   = "../src/generated/prisma"
 }
 
-// Configura a conexão com o banco de dados
 datasource db {
-    // Define que vamos usar SQLite como banco de dados
     provider = "sqlite"
-    // Define a URL de conexão com o banco, usando uma variável de ambiente
     url      = "file:../database.sqlite"
 }
 
@@ -37,4 +32,19 @@ model Post {
     // campos de relacionamento
     user      User     @relation(fields: [userId], references: [id])
     userId    Int
+}
+
+model Categoria {
+  id    Int    @id @default(autoincrement())
+  nome  String
+}
+
+model Autor {
+  id    Int    @id @default(autoincrement())
+  nome  String
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  nome  String
 }

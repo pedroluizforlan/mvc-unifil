@@ -33,4 +33,10 @@ export abstract class AbstractController {
      */
     public abstract getMethod(): string;
 
+    protected sendResponse(statusCode: number, message: string, data?: any): void {
+        this.response.status(statusCode).json({
+            message,
+            data,
+        });
+    }
 }
